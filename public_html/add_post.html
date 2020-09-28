@@ -1,0 +1,36 @@
+<?php
+session_start();
+$set = isset($_SESSION["firstname"]) && isset($_SESSION["username"]);
+if(!$set){
+    session_destroy();
+    unset($_SESSION["firstname"]);
+    unset($_SESSION["username"]);
+    header("Location: index.html?error=timed_out");
+    exit();
+}
+?>
+
+<html>
+<head>
+    <title>Add post</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	 <?php include 'navbar.php'; ?>
+	 <center>Add Post<br><br>
+	 <form action = "/post_confirmation.html" method = "post">
+		Body:<br>
+		<textarea name = "body" rows= "5" cols = "40" ></textarea><br><br>
+		Visibility: <select name = "visibility">
+ 				    <option value=2>Family</option>
+  					<option value=1>Friends</option>
+  					<option value=3>Acquaintances</option>
+					</select>
+		<input text = "Post" type = "Submit">
+	</form>
+	
+</center>
+</body>
+</html>
